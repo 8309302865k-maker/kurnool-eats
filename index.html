@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kurnool Eats</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f7f7f7;
+      color: #222;
+    }
+
+    header {
+      background: #ff6b00;
+      color: white;
+      padding: 18px;
+      border-radius: 0 0 25px 25px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .tagline {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .cart {
+      background: white;
+      color: #ff6b00;
+      padding: 10px 13px;
+      border-radius: 50%;
+      font-size: 18px;
+    }
+
+    .search {
+      margin-top: 18px;
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 12px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    main {
+      padding: 18px;
+    }
+
+    h2 {
+      margin: 20px 0 12px;
+      font-size: 20px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+    }
+
+    .category {
+      min-width: 75px;
+      background: white;
+      padding: 12px 8px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 2px 8px #ddd;
+    }
+
+    .category span {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .category p {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .restaurants {
+      display: grid;
+      gap: 15px;
+    }
+
+    .restaurant {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px #ddd;
+    }
+
+    .restaurant img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .restaurant-info {
+      padding: 13px;
+    }
+
+    .restaurant-name {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .details {
+      color: #777;
+      font-size: 13px;
+      margin: 7px 0;
+    }
+
+    .rating {
+      color: #f59e0b;
+      font-weight: bold;
+    }
+
+    .food {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .food-price {
+      font-weight: bold;
+    }
+
+    .add-btn {
+      background: #ff6b00;
+      color: white;
+      border: none;
+      padding: 9px 15px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .bottom {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px;
+      box-shadow: 0 -2px 10px #ddd;
+    }
+
+    .bottom div {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .bottom .active {
+      color: #ff6b00;
+      font-weight: bold;
+    }
+
+    #cartCount {
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 10px;
+      position: relative;
+      top: -12px;
+      left: -8px;
+    }
+
+    .welcome {
+      background: #fff2e8;
+      padding: 15px;
+      border-radius: 15px;
+      margin-top: 18px;
+    }
+
+    .welcome h3 {
+      color: #ff6b00;
+      margin-bottom: 5px;
+    }
+
+    footer-space {
+      display: block;
+      height: 70px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+
+    <div class="top">
+
+      <div>
+        <div class="logo">🍴 Kurnool Eats</div>
+        <div class="tagline">Your Food, Your City ❤️</div>
+      </div>
+
+      <div class="cart" onclick="showCart()">
+        🛒
+        <span id="cartCount">0</span>
+      </div>
+
+    </div>
+
+    <input
+      class="search"
+      id="searchBox"
+      type="text"
+      placeholder="🔍 Search restaurants or food..."
+      onkeyup="searchFood()"
+    >
+
+  </header>
+
+
+  <main>
+
+    <!-- WELCOME -->
+    <div class="welcome">
+      <h3>Good Food, Good Mood 😋</h3>
+      <p>Order delicious food from your favourite restaurants in Kurnool.</p>
+    </div>
+
+
+    <!-- CATEGORIES -->
+    <h2>Food Categories</h2>
+
+    <div class="categories">
+
+      <div class="category">
+        <span>🍛</span>
+        <p>Biryani</p>
+      </div>
+
+      <div class="category">
+        <span>🍕</span>
+        <p>Pizza</p>
+      </div>
+
+      <div class="category">
+        <span>🍔</span>
+        <p>Burger</p>
+      </div>
+
+      <div class="category">
+        <span>🥘</span>
+        <p>South Indian</p>
+      </div>
+
+      <div class="category">
+        <span>🍜</span>
+        <p>Noodles</p>
+      </div>
+
+    </div>
+
+
+    <!-- RESTAURANTS -->
+    <h2>Popular Restaurants</h2>
+
+    <div class="restaurants" id="restaurantList">
+
+      <!-- Restaurant 1 -->
+      <div class="restaurant" data-name="Sri Balaji Biryani">
+
+        <img
+          src="https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=900&q=80"
+          alt="Biryani"
+        >
+
+        <div class="restaurant-info">
+
+          <div class="restaurant-name">
+            Hotel Sri Balaji
+          </div>
+
+          <div class="details">
+            🍛 Biryani • South Indian • ₹₹
+          </div>
+
+          <div class="rating">
+            ⭐ 4.5 • 30-40 mins
+          </div>
+
+          <div class="food">
+
+            <div>
+              <div>Chicken Biryani</div>
+              <div class="food-price">₹150</div>
+            </div>
+
+            <button class="add-btn"
+              onclick="addToCart('Chicken Biryani',150)">
+              + Add
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Restaurant 2 -->
+      <div class="restaurant" data-name="Pizza Hub">
+
+        <img
+          src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80"
+          alt="Pizza"
+        >
+
+        <div class="restaurant-info">
+
+          <div class="restaurant-name">
+            Pizza Hub
+          </div>
+
+          <div class="details">
+            🍕 Pizza • Fast Food • ₹₹
+          </div>
+
+          <div class="rating">
+            ⭐ 4.3 • 25-35 mins
+          </div>
+
+          <div class="food">
+
+            <div>
+              <div>Chicken Pizza</div>
+              <div class="food-price">₹220</div>
+            </div>
+
+            <button class="add-btn"
+              onclick="addToCart('Chicken Pizza',220)">
+              + Add
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Restaurant 3 -->
+      <div class="restaurant" data-name="Spicy Kitchen">
+
+        <img
+          src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=80"
+          alt="Food"
+        >
+
+        <div class="restaurant-info">
+
+          <div class="restaurant-name">
+            Spicy Kitchen
+          </div>
+
+          <div class="details">
+            🍜 Chinese • Indian • ₹
+          </div>
+
+          <div class="rating">
+            ⭐ 4.2 • 20-30 mins
+          </div>
+
+          <div class="food">
+
+            <div>
+              <div>Veg Noodles</div>
+              <div class="food-price">₹120</div>
+            </div>
+
+            <button class="add-btn"
+              onclick="addToCart('Veg Noodles',120)">
+              + Add
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <footer-space></footer-space>
+
+  </main>
+
+
+  <!-- BOTTOM NAVIGATION -->
+  <div class="bottom">
+
+    <div class="active">
+      🏠<br>
+      Home
+    </div>
+
+    <div onclick="alert('Search feature coming soon!')">
+      🔍<br>
+      Search
+    </div>
+
+    <div onclick="showCart()">
+      🛒<br>
+      Cart
+    </div>
+
+    <div onclick="alert('Orders feature coming soon!')">
+      📦<br>
+      Orders
+    </div>
+
+    <div onclick="alert('Profile feature coming soon!')">
+      👤<br>
+      Profile
+    </div>
+
+  </div>
+
+
+  <script>
+
+    let cart = [];
+
+    function addToCart(name, price) {
+
+      cart.push({
+        name: name,
+        price: price
+      });
+
+      document.getElementById("cartCount").innerText = cart.length;
+
+      alert(name + " added to cart! 🛒");
+
+    }
+
+
+    function showCart() {
+
+      if (cart.length === 0) {
+
+        alert("Your cart is empty! 🍽️");
+
+        return;
+
+      }
+
+      let total = 0;
+      let message = "🛒 Kurnool Eats Cart\n\n";
+
+      cart.forEach((item, index) => {
+
+        message +=
+          (index + 1) +
+          ". " +
+          item.name +
+          " - ₹" +
+          item.price +
+          "\n";
+
+        total += item.price;
+
+      });
+
+      message +=
+        "\nTotal: ₹" +
+        total +
+        "\n\nThank you for choosing Kurnool Eats ❤️";
+
+      alert(message);
+
+    }
+
+
+    function searchFood() {
+
+      let search =
+        document
+        .getElementById("searchBox")
+        .value
+        .toLowerCase();
+
+      let restaurants =
+        document.querySelectorAll(".restaurant");
+
+      restaurants.forEach(function(item) {
+
+        let name =
+          item
+          .getAttribute("data-name")
+          .toLowerCase();
+
+        if (name.includes(search)) {
+
+          item.style.display = "block";
+
+        } else {
+
+          item.style.display = "none";
+
+        }
+
+      });
+
+    }
+
+  </script>
+
+</body>
+      </html>
