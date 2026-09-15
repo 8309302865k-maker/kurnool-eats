@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kurnool Eats</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="header">
+
+    <div class="brand">
+      <div class="logo">🍴 Kurnool Eats</div>
+      <div class="tagline">Your Food, Your City ❤️</div>
+    </div>
+
+    <button class="cart-button" onclick="openCart()">
+      🛒 <span id="cartCount">0</span>
+    </button>
+
+    <div class="location">
+      📍 Kurnool
+    </div>
+
+    <input
+      id="search"
+      class="search"
+      type="text"
+      placeholder="Search food or restaurant..."
+      oninput="searchRestaurants()"
+    >
+
+  </header>
+
+
+  <main>
+
+    <section class="welcome">
+      <h2>Hungry? 😋</h2>
+      <p>Find your favourite food near you.</p>
+    </section>
+
+
+    <h2 class="section-title">Categories</h2>
+
+    <div class="categories">
+
+      <button onclick="filterFood('all')">🍽️<small>All</small></button>
+      <button onclick="filterFood('biryani')">🍛<small>Biryani</small></button>
+      <button onclick="filterFood('pizza')">🍕<small>Pizza</small></button>
+      <button onclick="filterFood('burger')">🍔<small>Burger</small></button>
+      <button onclick="filterFood('south')">🥘<small>South Indian</small></button>
+      <button onclick="filterFood('chinese')">🍜<small>Chinese</small></button>
+
+    </div>
+
+
+    <div class="title-row">
+      <h2 class="section-title">Popular Restaurants</h2>
+      <span>View all →</span>
+    </div>
+
+
+    <section id="restaurants" class="restaurants">
+
+      <article
+        class="restaurant"
+        data-name="Kurnool Biryani House"
+        data-category="biryani"
+      >
+
+        <img
+          src="https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=900&q=80"
+          alt="Biryani"
+        >
+
+        <div class="restaurant-content">
+
+          <div class="restaurant-top">
+            <h3>Kurnool Biryani House</h3>
+            <span class="rating">⭐ 4.5</span>
+          </div>
+
+          <p>🍛 Biryani • Indian</p>
+          <p>🕒 25–35 min • ₹₹</p>
+
+          <div class="food-row">
+
+            <div>
+              <b>Chicken Biryani</b>
+              <strong>₹150</strong>
+            </div>
+
+            <button
+              onclick="addToCart('Chicken Biryani',150)"
+              class="add"
+            >
+              + Add
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <article
+        class="restaurant"
+        data-name="Kurnool Pizza Hub"
+        data-category="pizza"
+      >
+
+        <img
+          src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80"
+          alt="Pizza"
+        >
+
+        <div class="restaurant-content">
+
+          <div class="restaurant-top">
+            <h3>Kurnool Pizza Hub</h3>
+            <span class="rating">⭐ 4.3</span>
+          </div>
+
+          <p>🍕 Pizza • Fast Food</p>
+          <p>🕒 20–30 min • ₹₹</p>
+
+          <div class="food-row">
+
+            <div>
+              <b>Chicken Pizza</b>
+              <strong>₹220</strong>
+            </div>
+
+            <button
+              onclick="addToCart('Chicken Pizza',220)"
+              class="add"
+            >
+              + Add
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <article
+        class="restaurant"
+        data-name="Mana Burger"
+        data-category="burger"
+      >
+
+        <img
+          src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80"
+          alt="Burger"
+        >
+
+        <div class="restaurant-content">
+
+          <div class="restaurant-top">
+            <h3>Mana Burger</h3>
+            <span class="rating">⭐ 4.4</span>
+          </div>
+
+          <p>🍔 Burgers • Fast Food</p>
+          <p>🕒 20–30 min • ₹</p>
+
+          <div class="food-row">
+
+            <div>
+              <b>Chicken Burger</b>
+              <strong>₹120</strong>
+            </div>
+
+            <button
+              onclick="addToCart('Chicken Burger',120)"
+              class="add"
+            >
+              + Add
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <article
+        class="restaurant"
+        data-name="Andhra Meals"
+        data-category="south"
+      >
+
+        <img
+          src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80"
+          alt="South Indian Food"
+        >
+
+        <div class="restaurant-content">
+
+          <div class="restaurant-top">
+            <h3>Andhra Meals</h3>
+            <span class="rating">⭐ 4.6</span>
+          </div>
+
+          <p>🥘 South Indian • Meals</p>
+          <p>🕒 15–25 min • ₹</p>
+
+          <div class="food-row">
+
+            <div>
+              <b>Full Meals</b>
+              <strong>₹100</strong>
+            </div>
+
+            <button
+              onclick="addToCart('Full Meals',100)"
+              class="add"
+            >
+              + Add
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+  </main>
+
+
+  <nav class="bottom-nav">
+
+    <button class="active">
+      🏠
+      <small>Home</small>
+    </button>
+
+    <button onclick="focusSearch()">
+      🔍
+      <small>Search</small>
+    </button>
+
+    <button onclick="openCart()">
+      🛒
+      <small>Cart</small>
+    </button>
+
+    <button onclick="showOrders()">
+      📦
+      <small>Orders</small>
+    </button>
+
+    <button onclick="showProfile()">
+      👤
+      <small>Profile</small>
+    </button>
+
+  </nav>
+
+
+  <div id="cartModal" class="modal">
+
+    <div class="modal-box">
+
+      <button class="close" onclick="closeCart()">×</button>
+
+      <h2>🛒 Your Cart</h2>
+
+      <div id="cartItems"></div>
+
+      <div class="total">
+        Total: ₹<span id="total">0</span>
+      </div>
+
+      <button class="checkout" onclick="checkout()">
+        Proceed to Checkout
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script src="app.js"></script>
+
+</body>
+</html>
